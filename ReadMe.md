@@ -46,11 +46,22 @@ This project implements an attendance system using face detection technology com
 
 2. The Tkinter GUI will launch. Follow the on-screen instructions to add users and record attendance.
 
-![Real Image](samples/Real.jpeg)
-
+Examples :
+<img src="/samples/Real.jpeg" style=" width:60px ; height:60px ">
+<div class="row">
+  <div class="column">
+    <img src="/samples/Login-Page.jpg" alt="Snow" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="img_forest.jpg" alt="Forest" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="img_mountains.jpg" alt="Mountains" style="width:100%">
+  </div>
+</div>
 
 ## Project Structure
-
+```bash
 attendance-face-detection/
 ├── main.py                  # Main application file
 ├── SilentFaceAntiSpoofing/  # Directory for spoof proofing modules
@@ -58,3 +69,4 @@ attendance-face-detection/
 ├── samples                  # samples
 ├── requirements.txt         # Python dependencies
 └── README.md                # Project README file
+```
