@@ -1,15 +1,17 @@
 import os.path
 import datetime
 import pickle
+import sys
 
+# sys.path.insert(1, "/home/anant/anaconda3/envs/CV/face-detection-project/FaceAttendanceLogin/SilentFaceAntiSpoofing")
+
+from SilentFaceAntiSpoofing.test import test
 import tkinter as tk
 import cv2
 from PIL import Image, ImageTk
 import face_recognition
 
 import util
-from test import test
-
 
 class App:
     def __init__(self):
@@ -31,15 +33,15 @@ class App:
 
         self.add_webcam(self.webcam_label)
 
-        self.db_dir = './db'
+        self.db_dir = '/home/anant/anaconda3/envs/CV/face-detection-project/FaceAttendanceLogin/db'
         if not os.path.exists(self.db_dir):
             os.mkdir(self.db_dir)
 
-        self.log_path = './log.txt'
+        self.log_path = '/home/anant/anaconda3/envs/CV/face-detection-project/FaceAttendanceLogin/log.txt'
 
     def add_webcam(self, label):
         if 'cap' not in self.__dict__:
-            self.cap = cv2.VideoCapture(2)
+            self.cap = cv2.VideoCapture(0)
 
         self._label = label
         self.process_webcam()
@@ -60,7 +62,7 @@ class App:
 
         label = test(
                 image=self.most_recent_capture_arr,
-                model_dir='/home/phillip/Desktop/todays_tutorial/27_face_recognition_spoofing/code/face-attendance-system/Silent-Face-Anti-Spoofing/resources/anti_spoof_models',
+                model_dir='/home/anant/anaconda3/envs/CV/face-detection-project/FaceAttendanceLogin/SilentFaceAntiSpoofing/resources/anti_spoof_models',
                 device_id=0
                 )
 
@@ -77,13 +79,13 @@ class App:
                     f.close()
 
         else:
-            util.msg_box('Hey, you are a spoofer!', 'You are fake !')
+            util.msg_box('Fake Image !!', 'You are fake !')
 
     def logout(self):
 
         label = test(
                 image=self.most_recent_capture_arr,
-                model_dir='/home/phillip/Desktop/todays_tutorial/27_face_recognition_spoofing/code/face-attendance-system/Silent-Face-Anti-Spoofing/resources/anti_spoof_models',
+                model_dir='/home/anant/anaconda3/envs/CV/face-detection-project/FaceAttendanceLogin/SilentFaceAntiSpoofing/resources/anti_spoof_models',
                 device_id=0
                 )
 
@@ -142,7 +144,7 @@ class App:
 
         embeddings = face_recognition.face_encodings(self.register_new_user_capture)[0]
 
-        file = open(os.path.join(self.db_dir, '{}.pickle'.format(name)), 'wb')
+        file = open(os.path.join(self.db_dir, '{}.jpg'.format(name)), 'wb')
         pickle.dump(embeddings, file)
 
         util.msg_box('Success!', 'User was registered successfully !')
